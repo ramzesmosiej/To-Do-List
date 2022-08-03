@@ -6,9 +6,9 @@
 #### Task Repository
 
 Klasa ta znajduje się w pliku 'src/main/java/com/ramzesaxxiome/ToDoList/model/TaskRepository.java'
-Niezbędme jest dodanie do pom.xml poniższej zależności:
+Niezbędne jest dodanie do pom.xml poniższej zależności:
 
-'''
+```
 <dependencies>
   <dependency>
     <groupId>org.springframework.data</groupId>
@@ -16,9 +16,9 @@ Niezbędme jest dodanie do pom.xml poniższej zależności:
   </dependency>
 <dependencies>
   
-'''
+```
 Koncept użyty tu pochodzi z modułu springa, Spring Data Rest,
-dokumentacje można znaleźć pod adresem https://spring.io/projects/spring-data-rest#learn
+dokumentację można znaleźć pod adresem `https://spring.io/projects/spring-data-rest#learn`
 '''
 @RepositoryRestResource
 public interface TaskRepository extends JpaRepository<Task, Integer> {
