@@ -19,7 +19,7 @@ Niezbędne jest dodanie do pom.xml poniższej zależności:
 ```
 Koncept użyty tu pochodzi z modułu springa, Spring Data Rest,
 dokumentację można znaleźć pod adresem `https://spring.io/projects/spring-data-rest#learn`
-'''
+```
 @RepositoryRestResource
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
@@ -34,5 +34,5 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     @RestResource(path = "done", rel = "done")
     List<Task> findByIsDone(@Param("state") boolean done);
 }
-'''
+```
 
