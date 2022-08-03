@@ -1,9 +1,9 @@
-# Pakiet ten zawiera dwie klasy TaskRepository dziedziczące z JpaRepository i klasę Task będącą obiektem @Entity
-#### Spis treści:
+# Package zawiera dwie klasy TaskRepository dziedziczące z JpaRepository i klasę Task będącą obiektem @Entity
+### Spis treści:
 - [TaskRepository](#task-repository)
 - [Task](#task)
 
-#### Task Repository
+### Task Repository
 
 Klasa ta znajduje się w pliku 'src/main/java/com/ramzesaxxiome/ToDoList/model/TaskRepository.java'
 Niezbędne jest dodanie do pom.xml poniższej zależności:
