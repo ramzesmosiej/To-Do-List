@@ -18,7 +18,7 @@ Niezbędne jest dodanie do pom.xml poniższej zależności:
   
 ```
 Koncept użyty tu pochodzi z modułu springa, Spring Data Rest,
-dokumentację można znaleźć pod adresem `https://spring.io/projects/spring-data-rest#learn`
+dokumentację można znaleźć pod adresem [https://spring.io/projects/spring-data-rest#learn](https://spring.io/projects/spring-data-rest#learn)
 ```
 @RepositoryRestResource
 public interface TaskRepository extends JpaRepository<Task, Integer> {
