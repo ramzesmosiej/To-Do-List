@@ -1,4 +1,4 @@
-package com.ramzesaxxiome.To.Do.List;
+package com.ramzesaxxiome.ToDoList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
