@@ -1,4 +1,4 @@
-# Package zawiera dwie klasy TaskRepository dziedziczące z JpaRepository i klasę Task będącą obiektem @Entity
+# Package zawiera dwie klasy TaskRepository dziedziczącą po JpaRepository i klasę Task będącą obiektem @Entity
 ### Spis treści:
 - [TaskRepository](#task-repository)
 - [Task](#task)
