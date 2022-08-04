@@ -1,12 +1,12 @@
 # Sekcja 3 kursu wprowadza korzystanie z modułu springa Spring Data REST i używanie go do zbudowanie prostego REST API.
-Koncept raczej nie używany w komercyjnych projektach dlatego nie będę poświęcał mu dużo uwagi
+Koncept raczej nie używany w komercyjnych projektach dlatego nie będę poświęcał mu dużo uwagi.
 ### Spis treści:
 - [TaskRepository](#task-repository)
 - [Task](#task)
 
 ### Task Repository
 
-Klasa ta znajduje się w pliku 'src/main/java/com/ramzesaxxiome/ToDoList/model/TaskRepository.java' i jest to przykładowe repozytorium
+Klasa ta znajduje się w pliku 'src/main/java/com/ramzesaxxiome/ToDoList/model/TaskRepository.java' i jest to przykładowe repozytorium.
 
 Niezbędne jest dodanie do pom.xml poniższej zależności:
 
@@ -40,7 +40,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 #### Task
 
 Klasa z adnotacją @Entity, oznacza to że jest to tabela w relacyjnej bazie danych, w tym przypadku jest to baza danych H2 (nazwa tabeli to tasks).
-Każdy task ma automatycznie wygenerowane ID, opis, a także boolean isDone
+Każdy task ma automatycznie wygenerowane ID, opis, a także boolean isDone.
 ```
 Entity
 @Table(name = "tasks")
@@ -56,7 +56,7 @@ public class Task {
     Task() {
     }
 ```
-Spring automatycznie tworzy nam endpoint /tasks (ponieważ Jpa repo trzyma obiekt Task) i REST API którym możemy się posługiwać i wysyłać żądania do bazy danych
+Spring automatycznie tworzy nam endpoint /tasks (ponieważ Jpa repo trzyma obiekt Task) i REST API którym możemy się posługiwać i wysyłać żądania do bazy danych.
 
 
 
