@@ -1,4 +1,4 @@
-# Sekcja 3 kursu wprowadza korzystanie z modułu springa Spring Data REST.
+# Sekcja 3 kursu wprowadza korzystanie z modułu springa Spring Data REST i używanie go do zbudowanie prostego REST API.
 Koncept raczej nie używany w komercyjnych projektach dlatego nie będę poświęcał mu dużo uwagi
 ### Spis treści:
 - [TaskRepository](#task-repository)
