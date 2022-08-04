@@ -17,7 +17,7 @@ Niezbędne jest dodanie do pom.xml poniższej zależności:
 <dependencies>
   
 ```
-Koncept użyty tu pochodzi z modułu springa, Spring Data Rest, używanego do wywoływania metod http na repository bez konieczności pisania oddzielnego controllera ((adnotacja @RepositoryrestResource ))
+Koncept użyty tu pochodzi z modułu springa, Spring Data Rest, używanego do wywoływania metod http na repository bez konieczności pisania oddzielnego controllera ((adnotacja @RepositoryRestResource ))
 dokumentację można znaleźć pod adresem [https://spring.io/projects/spring-data-rest#learn](https://spring.io/projects/spring-data-rest#learn). Koncept raczej nie wykorzystywany w komercyjnych projektach, w dalszej części kursu repository zostaje zmienione na @Repository i dodany @RestController 
 ```
 @RepositoryRestResource
