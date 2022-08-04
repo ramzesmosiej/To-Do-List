@@ -17,8 +17,8 @@ Niezbędne jest dodanie do pom.xml poniższej zależności:
 <dependencies>
   
 ```
-Koncept użyty tu pochodzi z modułu springa, Spring Data Rest,
-dokumentację można znaleźć pod adresem [https://spring.io/projects/spring-data-rest#learn](https://spring.io/projects/spring-data-rest#learn)
+Koncept użyty tu pochodzi z modułu springa, Spring Data Rest, używanego do wywoływania metod http na repository bez konieczności pisania oddzielnego controllera ((adnotacja @RepositoryrestResource ))
+dokumentację można znaleźć pod adresem [https://spring.io/projects/spring-data-rest#learn](https://spring.io/projects/spring-data-rest#learn). Koncept raczej nie wykorzystywany w komercyjnych projektach, w dalszej części kursu repository zostaje zmienione na @Repository i dodany @RestController 
 ```
 @RepositoryRestResource
 public interface TaskRepository extends JpaRepository<Task, Integer> {
@@ -35,4 +35,21 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     List<Task> findByIsDone(@Param("state") boolean done);
 }
 ```
+#### Task
+```
+Entity
+@Table(name = "tasks")
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "desc")
+    @NotBlank(message = "Task description must be not null and not empty")
+    private String description;
+    private boolean isDone;
+
+    Task() {
+    }
+```
+
 
