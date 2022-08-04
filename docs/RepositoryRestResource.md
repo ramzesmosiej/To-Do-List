@@ -39,7 +39,8 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 ```
 #### Task
 
-Klasa z adnotacją @Entity, oznacza to że jest to tabela w relacyjnej bazie danych, w tym przypadku jest to baza danych H2 (nazwa tabeli to tasks)
+Klasa z adnotacją @Entity, oznacza to że jest to tabela w relacyjnej bazie danych, w tym przypadku jest to baza danych H2 (nazwa tabeli to tasks).
+Każdy task ma automatycznie wygenerowane ID, opis, a także boolean isDone
 ```
 Entity
 @Table(name = "tasks")
