@@ -1,11 +1,13 @@
-# Package zawiera dwie klasy TaskRepository dziedziczącą po JpaRepository i klasę Task będącą obiektem @Entity
+# Sekcja 3 kursu wprowadza korzystanie z modułu springa Spring Data REST.
+Koncept raczej nie używany w komercyjnych projektach dlatego nie będę poświęcał mu dużo uwagi
 ### Spis treści:
 - [TaskRepository](#task-repository)
 - [Task](#task)
 
 ### Task Repository
 
-Klasa ta znajduje się w pliku 'src/main/java/com/ramzesaxxiome/ToDoList/model/TaskRepository.java'
+Klasa ta znajduje się w pliku 'src/main/java/com/ramzesaxxiome/ToDoList/model/TaskRepository.java' i jest to przykładowe repozytorium
+
 Niezbędne jest dodanie do pom.xml poniższej zależności:
 
 ```
@@ -18,7 +20,7 @@ Niezbędne jest dodanie do pom.xml poniższej zależności:
   
 ```
 Koncept użyty tu pochodzi z modułu springa, Spring Data Rest, używanego do wywoływania metod http na repository bez konieczności pisania oddzielnego controllera ((adnotacja @RepositoryRestResource ))
-dokumentację można znaleźć pod adresem [https://spring.io/projects/spring-data-rest#learn](https://spring.io/projects/spring-data-rest#learn). Koncept raczej nie wykorzystywany w komercyjnych projektach, w dalszej części kursu repository zostaje zmienione na @Repository i dodany @RestController 
+dokumentację można znaleźć pod adresem [https://spring.io/projects/spring-data-rest#learn](https://spring.io/projects/spring-data-rest#learn).
 ```
 @RepositoryRestResource
 public interface TaskRepository extends JpaRepository<Task, Integer> {
@@ -37,7 +39,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 ```
 #### Task
 
-Klasa z adnotacją @Entity, oznacza to że jest to tabela w relacyjnej bazie danych, w tym przypadku jest to baza danych H2  (nazwa tabeli to tasks)
+Klasa z adnotacją @Entity, oznacza to że jest to tabela w relacyjnej bazie danych, w tym przypadku jest to baza danych H2 (nazwa tabeli to tasks)
 ```
 Entity
 @Table(name = "tasks")
@@ -53,5 +55,7 @@ public class Task {
     Task() {
     }
 ```
+Spring automatycznie tworzy nam endpoint /tasks (ponieważ Jpa repo trzyma obiekt Task) i REST API którym możemy się posługiwać i wysyłać żądania do bazy danych
+
 
 
