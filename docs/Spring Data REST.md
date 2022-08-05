@@ -3,6 +3,7 @@ Koncept raczej nie używany w komercyjnych projektach dlatego nie będę poświ�
 ### Spis treści:
 - [TaskRepository](#task-repository)
 - [Task](#task)
+- [API-Reference](#api-reference)
 
 ### Task Repository
 
