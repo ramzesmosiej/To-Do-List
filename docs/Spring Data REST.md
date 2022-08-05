@@ -8,7 +8,7 @@ Koncept raczej nie używany w komercyjnych projektach dlatego nie będę poświ�
 
 Klasa ta znajduje się w pliku 'src/main/java/com/ramzesaxxiome/ToDoList/model/TaskRepository.java' i jest to przykładowe repozytorium.
 
-Niezbędne jest dodanie do pom.xml poniższej zależności:
+Niezbędne jest dodanie do pom.xml poniższych zależności:
 
 ```
 <dependencies>
@@ -16,6 +16,10 @@ Niezbędne jest dodanie do pom.xml poniższej zależności:
     <groupId>org.springframework.data</groupId>
     <artifactId>spring-data-jpa</artifactId>
   </dependency>
+  <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
 <dependencies>
   
 ```
@@ -42,7 +46,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 Klasa z adnotacją @Entity, oznacza to że jest to tabela w relacyjnej bazie danych, w tym przypadku jest to baza danych H2 (nazwa tabeli to tasks).
 Każdy task ma automatycznie wygenerowane ID, opis, a także boolean isDone.
 ```
-Entity
+@Entity
 @Table(name = "tasks")
 public class Task {
     @Id
@@ -57,6 +61,56 @@ public class Task {
     }
 ```
 Spring automatycznie tworzy nam endpoint /tasks (ponieważ Jpa repo trzyma obiekt Task) i REST API którym możemy się posługiwać i wysyłać żądania do bazy danych.
+
+
+## API Reference
+
+#### Get all tasks
+
+```http
+  GET /tasks
+```
+```
+Postman response:
+{
+    "_embedded": {
+        "tasks": []
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8081/tasks"
+        },
+        "profile": {
+            "href": "http://localhost:8081/profile/tasks"
+        }
+    },
+    "page": {
+        "size": 20,
+        "totalElements": 0,
+        "totalPages": 0,
+        "number": 0
+    }
+}
+```
+W odpowiedzi widzimy JSONa który zawiera listę
+wszystkich tasków (aktualnie zero), a także inne URL
+dostępne dla tego resource.
+
+Po dodaniu do repository sygnatury metody dostępnej w JpaRepository
+przykładowo:
+```
+List<Task> findByIsDone(@Param("state") boolean isDone);
+```
+
+możemy wybierać taski które są zrobione lub nie.
+
+```http
+  GET /tasks/search/findByIsDone?state=false
+```
+Można również używać parametrów sort, page,
+dostosowywać endpointy, szczegóły w poniższych linkach:
+[https://www.baeldung.com/spring-data-rest-intro]
+[https://progressivecoder.com/exposing-repositories-as-rest-resources-using-spring-boot/]
 
 
 
