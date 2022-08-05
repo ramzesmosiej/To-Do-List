@@ -27,6 +27,7 @@ public class TaskController {
         return repository.findById(id).map(ResponseEntity::ok).
                 orElse(ResponseEntity.notFound().build());
     }
+    
     @PostMapping(path = "/tasks")
     ResponseEntity<Task> createTask(@RequestBody TaskCreationRequest taskCreationRequest) {
         Task createdTask = new Task(taskCreationRequest.getDescription(), taskCreationRequest.isDone());
