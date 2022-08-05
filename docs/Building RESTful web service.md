@@ -45,3 +45,4 @@ public class TaskController {
 }
 
 ```
+We have routes for each HTTP operation: (@GetMapping, @PostMapping, @PutMapping and @DeleteMapping, corresponding to HTTP GET, POST, PUT, and DELETE calls)
