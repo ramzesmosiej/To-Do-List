@@ -8,7 +8,7 @@
 ### RestController
 In Spring, HTTP Requests are handled by Controller. These are identified by 
 @RestController annotation, which combines two annotations: @Controller and @ResponseBody(binds a method return value to the web response body)
-Example from course:
+Example from course with two my methods added:
 ```
 @RestController
 public class TaskController {
@@ -19,6 +19,16 @@ public class TaskController {
         this.repository = taskRepository;
     }
 
+    @GetMapping(path="tasks/hateoas")
+    CollectionModel<EntityModel<Task>> getAllTasks() {
+        List<EntityModel<Task>> allTasks = repository.findAll().stream().map(
+                task -> EntityModel.of(task,
+                        linkTo(methodOn(TaskController.class).getTaskById(task.getId())).withSelfRel(),
+                        linkTo(methodOn(TaskController.class).getAllTasks()).withRel("tasks"))
+        ).collect(Collectors.toList());
+        return CollectionModel.of(allTasks, linkTo(methodOn(TaskController.class).
+                getAllTasks()).withSelfRel());
+    }
     @GetMapping(path = "/tasks", params = {"!sort", "!page", "!size"})
     ResponseEntity<List<Task>> readAllTasks() {
         logger.warn("Exposing all the tasks!");
@@ -34,7 +44,6 @@ public class TaskController {
         return repository.findById(id).map(ResponseEntity::ok).
                 orElse(ResponseEntity.notFound().build());
     }
-    
     @PostMapping(path = "/tasks")
     ResponseEntity<Task> createTask(@RequestBody TaskCreationRequest taskCreationRequest) {
         Task createdTask = new Task(taskCreationRequest.getDescription(), taskCreationRequest.isDone());
@@ -49,6 +58,11 @@ public class TaskController {
         toUpdate.setId(id);
         repository.save(toUpdate);
         return ResponseEntity.ok(toUpdate);
+    }
+    @DeleteMapping(path = "/tasks")
+    ResponseEntity<?> deleteAllTasks() {
+        repository.deleteAll();
+        return ResponseEntity.ok().build();
     }
 }
 
