@@ -66,14 +66,56 @@ According to spring documentation a crucial aspect of building RESTful Api is ad
 I have written an example in addition to the code from this udemy course, adding another get requests using hateoas
 official docs showing this feature: [https://spring.io/guides/tutorials/rest/](https://spring.io/guides/tutorials/rest/)
 ```
-    @GetMapping(path="tasks/hateoas/")
+    @GetMapping(path="tasks/hateoas")
     CollectionModel<EntityModel<Task>> getAllTasks() {
         List<EntityModel<Task>> allTasks = repository.findAll().stream().map(
-                task -> EntityModel.of(task, linkTo(methodOn(TaskController.class).
-                        getTaskById(task.getId())).withSelfRel(),
+                task -> EntityModel.of(task, 
+                        linkTo(methodOn(TaskController.class).getTaskById(task.getId())).withSelfRel(),
                         linkTo(methodOn(TaskController.class).getAllTasks()).withRel("tasks"))
         ).collect(Collectors.toList());
         return CollectionModel.of(allTasks, linkTo(methodOn(TaskController.class).
                 getAllTasks()).withSelfRel());
     }
-    '''
+ ```
+ ```http
+  GET /tasks/hateoas
+```
+ Response from postman after adding two tasks before:
+ ```
+ {
+    "_embedded": {
+        "tasks": [
+            {
+                "description": "adescription",
+                "done": true,
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8081/tasks/1"
+                    },
+                    "tasks": {
+                        "href": "http://localhost:8081/tasks/hateoas"
+                    }
+                }
+            },
+            {
+                "description": "adescription",
+                "done": true,
+                "_links": {
+                    "self": {
+                        "href": "http://localhost:8081/tasks/2"
+                    },
+                    "tasks": {
+                        "href": "http://localhost:8081/tasks/hateoas"
+                    }
+                }
+            }
+        ]
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:8081/tasks/hateoas"
+        }
+    }
+}
+```
+ 
