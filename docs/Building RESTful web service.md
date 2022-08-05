@@ -1,3 +1,10 @@
+# How to build RESTful web service in Spring Boot
+### Agneda:
+- [RestController](#rest-controller)
+- [Task](#task)
+- [API-Reference](#api-reference)
+
+
 ### RestController
 In Spring, HTTP Requests are handled by Controller. These are identified by 
 @RestController annotation, which combines two annotations: @Controller and @ResponseBody(binds a method return value to the web response body)
@@ -47,3 +54,26 @@ public class TaskController {
 
 ```
 We have routes for each HTTP operation: (@GetMapping, @PostMapping, @PutMapping and @DeleteMapping, corresponding to HTTP GET, POST, PUT, and DELETE calls)
+All the endpoints could be tested with Postman
+### Spring HATEOAS
+According to spring documentation a crucial aspect of building RESTful Api is adding links to relevant operations meaning adding relevant links to JSON Response
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-hateoas</artifactId>
+</dependency>
+```
+I have written an example in addition to the code from this udemy course, adding another get requests using hateoas
+official docs showing this feature: [https://spring.io/guides/tutorials/rest/](https://spring.io/guides/tutorials/rest/)
+```
+    @GetMapping(path="tasks/hateoas/")
+    CollectionModel<EntityModel<Task>> getAllTasks() {
+        List<EntityModel<Task>> allTasks = repository.findAll().stream().map(
+                task -> EntityModel.of(task, linkTo(methodOn(TaskController.class).
+                        getTaskById(task.getId())).withSelfRel(),
+                        linkTo(methodOn(TaskController.class).getAllTasks()).withRel("tasks"))
+        ).collect(Collectors.toList());
+        return CollectionModel.of(allTasks, linkTo(methodOn(TaskController.class).
+                getAllTasks()).withSelfRel());
+    }
+    '''
