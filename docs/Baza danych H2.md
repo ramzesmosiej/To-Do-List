@@ -53,7 +53,6 @@ ID  	     CREATED_ON  	           UPDATED_ON  	              DEADLINE  	     DES
 2	2022-08-08 13:59:35.94143	2022-08-08 13:59:44.419067	2022-10-23 23:19:19.111	differentdescccc	    TRUE	    null
 3	2022-08-08 13:59:36.632958	2022-08-08 13:59:52.942063	2022-10-23 23:19:19.111	differentdescccdfdffdc	FALSE	    null
 ```
-
 Nie jest jeszcze możliwe w kontrolerze dodawaniu tasków do grup(soon) i nie ma jeszcze logiki biznesowej dotyczącej drugiej relacji groups.
 
 
