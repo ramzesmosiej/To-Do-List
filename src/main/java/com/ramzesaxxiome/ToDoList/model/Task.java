@@ -61,14 +61,6 @@ public class Task {
         return deadline;
     }
 
-    public Audit getAudit() {
-        return audit;
-    }
-
-    public void setAudit(Audit audit) {
-        this.audit = audit;
-    }
-
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
@@ -77,7 +69,6 @@ public class Task {
         this.description = source.description;
         this.isDone = source.isDone;
         this.deadline = source.deadline;
-        this.group = source.group;
     }
 }
 
