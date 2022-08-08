@@ -12,9 +12,9 @@ lub w pliku na dysku twardym. W produkcyjnych wersjach aplikacji nie używana (P
     <scope>runtime</scope>
 </dependency>
 <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
 ```
 
 Posiada ona webowy interfejs który umożliwia przeglądanie danych znajdujących się w bazie i wykonywanie zapytań SQL.
