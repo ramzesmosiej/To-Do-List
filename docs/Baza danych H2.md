@@ -18,3 +18,10 @@ lub w pliku na dysku twardym. W produkcyjnych wersjach aplikacji nie używana (P
 ```
 
 Posiada ona webowy interfejs który umożliwia przeglądanie danych znajdujących się w bazie i wykonywanie zapytań SQL.
+W pliku application.properties należy dodać:
+```
+spring.h2.console.enabled=true
+spring.h2.console.path=console (default=h2-console)
+```
+Adres bazy danych można znaleźć w logach aplikacji podczas uruchamiania aplikacji, adres ten należy podać w konsoli aby połączyć się z bazą.
+Domyślna nazwa użytkownika to sa, hasło puste. Wszystko można zmieniać za pomocą odpowiednich wpisów w application.properties
