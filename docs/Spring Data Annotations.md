@@ -50,4 +50,12 @@ private TaskGroup group;
 ```
 Many to one refers to the relationship where many different task can be in the same project but one single task can belong to unique project. So in this case the task 
 has the join column which is a foreign key to the parent - Project (Meaning refers to the primary key of the parent table). In the @JoinColumn annotation we specify the name of the column.
+### Next Example are few attributes from TaskGroup Entity
+```
+@OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    private Set<Task> tasks;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 
+```
