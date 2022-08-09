@@ -41,4 +41,4 @@ Used to specify table details such as name, length
 private Audit audit = new Audit();
 ```
 Used to abstract out the attribute details into seperate class Audit to improve re-usability. 
-Good docs are here: [https://www.callicoder.com/hibernate-spring-boot-jpa-embeddable-demo/](@Embeddable and @Embedded Example)
+Good docs are here: [https://www.callicoder.com/hibernate-spring-boot-jpa-embeddable-demo/]((@Embeddable and @Embedded Example)
