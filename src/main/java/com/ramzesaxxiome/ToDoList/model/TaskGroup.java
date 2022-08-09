@@ -34,8 +34,16 @@ public class TaskGroup {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public boolean isDone() {
         return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     public Set<Task> getTasks() {
