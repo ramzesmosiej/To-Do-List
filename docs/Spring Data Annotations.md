@@ -53,9 +53,8 @@ has the join column which is a foreign key to the parent - Project (Meaning refe
 ### Next Example are few attributes from TaskGroup Entity
 ```
 @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
-    private Set<Task> tasks;
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
-
+private Set<Task> tasks;
+@ManyToOne
+@JoinColumn(name = "project_id")
+private Project project;
 ```
