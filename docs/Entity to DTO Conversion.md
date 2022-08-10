@@ -10,4 +10,10 @@ In the service there is a method that returns all the tasks using mapping to DTO
                 collect(Collectors.toList());
     }
 ```
-We fetch all entities from database and map them into DTO using map function. Inside we use function defined in DTO that takes onle necessary informations from Entity and creates DTO object.
+We fetch all entities from database and map them into DTO using map function. Inside we use constructor defined in DTO that takes onle necessary informations from Entity and creates DTO object.
+```
+public GroupTaskReadModel(Task source) {
+        this.description = source.getDescription();
+        this.isDone = source.isDone();
+    }
+```
