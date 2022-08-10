@@ -58,3 +58,6 @@ private Set<Task> tasks;
 @JoinColumn(name = "project_id")
 private Project project;
 ```
+Many to one same as in task.
+One to Many means that the taskGroup has many tasks as the list of tasks. Mapped by value is the name of the corresponsing attribute in child class,
+used to tell hibernate not to create extra mapping table
