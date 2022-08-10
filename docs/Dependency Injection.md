@@ -22,14 +22,14 @@ The configuration class produces a bean of type Address. It also carries the @Co
 When a Spring IoC container constructs objects of those types, all the objects are called Spring beans, as they are managed by the IoC container.
 ### @Bean vs @Component
 @Component auto detects and configures the beans using classpath scanning whereas @Bean explicitly declares a single bean, rather than letting Spring do it automatically.
------------------
+
 @Component does not decouple the declaration of the bean from the class definition where as @Bean decouples the declaration of the bean from the class definition.
-------------------
+
 @Component is a class level annotation whereas @Bean is a method level annotation and name of the method serves as the bean name.
--------------------
+
 @Component need not to be used with the @Configuration annotation where as @Bean annotation has to be used within the class which is annotated with @Configuration.
---------------------
+
 We cannot create a bean of a class using @Component, if the class is outside spring container whereas we can create a bean of a class using @Bean even if the class is present outside the spring container.
----------------
+
 @Component has different specializations like @Controller, @Repository and @Service whereas @Bean has no specializations
---------------------
+
