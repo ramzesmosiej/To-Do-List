@@ -12,7 +12,7 @@ public class TaskGroup {
     private int taskGroupId;
     @NotBlank(message = "Task group's description must not be empty")
     private String description;
-    private boolean done;
+    private boolean isDone;
     @Embedded
     private Audit audit = new Audit();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
@@ -39,11 +39,11 @@ public class TaskGroup {
     }
 
     public boolean isDone() {
-        return done;
+        return isDone;
     }
 
     public void setDone(boolean done) {
-        this.done = done;
+        isDone = done;
     }
 
     public Set<Task> getTasks() {
@@ -52,5 +52,13 @@ public class TaskGroup {
 
     public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }
