@@ -21,11 +21,15 @@ public class Config {
 The configuration class produces a bean of type Address. It also carries the @ComponentScan annotation, which instructs the container to look for beans in the package containing the Company class.
 When a Spring IoC container constructs objects of those types, all the objects are called Spring beans, as they are managed by the IoC container.
 ### @Bean vs @Component
-```
-Sr. No.	Key	@Bean	@Component
-1	Auto detection	It is used to explicitly declare a single bean, rather than letting Spring do it automatically. 	If any class is annotated with @Component it will be automatically detect by using classpath scan.
-2	Spring Container	Bean can be created even class is outside the spring container	We can’t create bean if class is outside spring container
-3	Class/Method  Level Annotation	It is a method level annotation	It is a class level annotation
-4	@Configuration	It works only when class is also annotated with @Configuration	It works without@Configuration annotation
-5	Use Case	We should use @bean, if you want specific implementation based on dynamic condition.	We can’t write specific implementation based on dynamic condition
-```
+@Component auto detects and configures the beans using classpath scanning whereas @Bean explicitly declares a single bean, rather than letting Spring do it automatically.
+-----------------
+@Component does not decouple the declaration of the bean from the class definition where as @Bean decouples the declaration of the bean from the class definition.
+------------------
+@Component is a class level annotation whereas @Bean is a method level annotation and name of the method serves as the bean name.
+-------------------
+@Component need not to be used with the @Configuration annotation where as @Bean annotation has to be used within the class which is annotated with @Configuration.
+--------------------
+We cannot create a bean of a class using @Component, if the class is outside spring container whereas we can create a bean of a class using @Bean even if the class is present outside the spring container.
+---------------
+@Component has different specializations like @Controller, @Repository and @Service whereas @Bean has no specializations
+--------------------
