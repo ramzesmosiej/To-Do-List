@@ -18,3 +18,14 @@ public class Config {
     }
 }
 ```
+The configuration class produces a bean of type Address. It also carries the @ComponentScan annotation, which instructs the container to look for beans in the package containing the Company class.
+When a Spring IoC container constructs objects of those types, all the objects are called Spring beans, as they are managed by the IoC container.
+### @Bean vs @Component
+```
+Sr. No.	Key	@Bean	@Component
+1	Auto detection	It is used to explicitly declare a single bean, rather than letting Spring do it automatically. 	If any class is annotated with @Component it will be automatically detect by using classpath scan.
+2	Spring Container	Bean can be created even class is outside the spring container	We can’t create bean if class is outside spring container
+3	Class/Method  Level Annotation	It is a method level annotation	It is a class level annotation
+4	@Configuration	It works only when class is also annotated with @Configuration	It works without@Configuration annotation
+5	Use Case	We should use @bean, if you want specific implementation based on dynamic condition.	We can’t write specific implementation based on dynamic condition
+```
