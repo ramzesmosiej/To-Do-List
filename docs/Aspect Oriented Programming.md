@@ -23,3 +23,19 @@ Different types of advice include “around,” “before,” and “after.”
 public @interface TaskCreationExecutionTime {
 }
 ```
+#### Creating PointCut and Advice
+```
+@Aspect
+@Component
+@Slf4j
+public class TaskAspect {
+    @Around("@annotation(TaskCreationExecutionTime)")
+    public Object aroundTaskCreation(ProceedingJoinPoint joinPoint) throws Throwable {
+        long startTime = System.currentTimeMillis();
+        Object object = joinPoint.proceed();
+        long endTime = System.currentTimeMillis();
+        log.info("Time taken for the Execution is: " + (endTime - startTime) + "ms");
+        return object;
+    }
+}
+```
