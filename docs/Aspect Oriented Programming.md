@@ -16,14 +16,18 @@ A Pointcut is a predicate that helps match an Advice to be applied by an Aspect 
 This is an action taken by an aspect at a particular JoinPoint\
 Different types of advice include “around,” “before,” and “after.”
 ### Adding my own example to to measure the amount of time to create new task
-#### Creating custom annotation
+#### Creating custom Annotation
+Target annotation tells us that this annotation is only applicable on methods. 
+Retention has to be configured in order to annotation being available for the JVM during runtime.
 ```
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TaskCreationExecutionTime {
 }
 ```
-#### Creating PointCut and Advice
+#### Creating PointCut and Advice in our TaskAspect
+We create here the method aroundTaskCreation which is an advice itself. Around helps to surround a method execution.
+Around annotation has a pointcut argument which simply says to apply this advice to any method having TaskCreationExecutionTime signature
 ```
 @Aspect
 @Component
@@ -39,3 +43,6 @@ public class TaskAspect {
     }
 }
 ```
+#### It is also necessary to decorate the core component, so createTask method in TaskController, with @TaskCreationExecutionTime annotation.
+After execution, we see the following logged to the console:
+
