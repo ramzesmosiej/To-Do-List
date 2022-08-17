@@ -16,6 +16,8 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     Optional<Task> findById(Integer id);
     Task save(Task entity);
     Page<Task> findAll(Pageable pageable);
+
+    List<Task> findAllByGroup(Integer id);
     List<Task> findByIsDone(@Param("state") boolean done);
     boolean existsByIsDoneIsFalseAndGroupTaskGroupId(Integer groupId);
 

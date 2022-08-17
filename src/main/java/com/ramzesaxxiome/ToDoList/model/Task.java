@@ -1,6 +1,8 @@
 package com.ramzesaxxiome.ToDoList.model;
 
 
+import com.ramzesaxxiome.ToDoList.model.event.TaskEvent;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
@@ -37,6 +39,14 @@ public class Task {
         this.deadline = deadline;
     }
 
+    public Task(String description, LocalDateTime deadline, TaskGroup taskGroup) {
+        this.description = description;
+        this.deadline = deadline;
+        if (taskGroup != null) {
+            this.group = taskGroup;
+        }
+    }
+
 
     public int getId() {
         return id;
@@ -58,8 +68,9 @@ public class Task {
         return isDone;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public TaskEvent toggle() {
+        this.isDone = !this.isDone;
+        return TaskEvent.changed(this);
     }
 
     public LocalDateTime getDeadline() {

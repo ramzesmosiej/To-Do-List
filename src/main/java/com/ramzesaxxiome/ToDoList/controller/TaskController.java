@@ -3,20 +3,21 @@ package com.ramzesaxxiome.ToDoList.controller;
 import com.ramzesaxxiome.ToDoList.model.Task;
 import com.ramzesaxxiome.ToDoList.model.TaskCreationRequest;
 import com.ramzesaxxiome.ToDoList.model.TaskRepository;
+import com.ramzesaxxiome.ToDoList.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -24,15 +25,21 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 @RestController
+@RequestMapping(path = "/tasks")
 public class TaskController {
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
     private final TaskRepository repository;
+    private final TaskService taskService;
 
-    public TaskController(TaskRepository taskRepository) {
+    private final ApplicationEventPublisher applicationEventPublisher;
+
+    public TaskController(TaskRepository taskRepository, TaskService taskService, ApplicationEventPublisher applicationEventPublisher) {
         this.repository = taskRepository;
+        this.taskService = taskService;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    @GetMapping(path="tasks/hateoas")
+    @GetMapping(path="/hateoas")
     CollectionModel<EntityModel<Task>> getAllTasks() {
         List<EntityModel<Task>> allTasks = repository.findAll().stream().map(
                 task -> EntityModel.of(task,
@@ -42,28 +49,28 @@ public class TaskController {
         return CollectionModel.of(allTasks, linkTo(methodOn(TaskController.class).
                 getAllTasks()).withSelfRel());
     }
-    @GetMapping(path = "/tasks", params = {"!sort", "!page", "!size"})
-    ResponseEntity<List<Task>> readAllTasks() {
-        logger.warn("Exposing all the tasks!");
-        return ResponseEntity.ok(repository.findAll());
+    @GetMapping(params = {"!sort", "!page", "!size"})
+    CompletableFuture<ResponseEntity<List<Task>>> readAllTasks() {
+        return taskService.findAllAsync().thenApplyAsync(ResponseEntity::ok);
     }
-    @GetMapping(path = "/tasks")
+    @GetMapping
     ResponseEntity<List<Task>> readAllTasks(Pageable pageable) {
         logger.info("Custom Pageable");
         return ResponseEntity.ok(repository.findAll(pageable).getContent());
     }
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<?> getTaskById(@PathVariable Integer id) {
         return repository.findById(id).map(ResponseEntity::ok).
                 orElse(ResponseEntity.notFound().build());
     }
-    @PostMapping(path = "/tasks")
+    @TaskCreationExecutionTime
+    @PostMapping
     ResponseEntity<Task> createTask(@RequestBody TaskCreationRequest taskCreationRequest) {
         Task createdTask = new Task(taskCreationRequest.getDescription(), taskCreationRequest.isDone(), taskCreationRequest.getDeadline());
         repository.save(createdTask);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdTask);
+        return ResponseEntity.created(URI.create("/" + createdTask.getId())).body(createdTask);
     }
-    @PutMapping(path = "/tasks/{id}")
+    @PutMapping(path = "/{id}")
     ResponseEntity<?> updateTask(@PathVariable int id, @RequestBody @Valid Task toUpdate) {
         if (!repository.existsById(id)) {
             return ResponseEntity.notFound().build();
@@ -75,16 +82,21 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
     @Transactional
-    @PatchMapping(path = "/tasks/{id}")
+    @PatchMapping(path = "/{id}")
     public ResponseEntity<?> toggleTask(@PathVariable int id) {
         if (!repository.existsById(id)) {
             return ResponseEntity.noContent().build();
         }
-        repository.findById(id).ifPresent(task -> task.setDone(!task.isDone()));
+        repository.findById(id).map(Task::toggle)
+                .ifPresent(applicationEventPublisher::publishEvent);
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping(path = "/tasks")
+    @GetMapping("/search/done")
+    ResponseEntity<List<Task>> readDoneTasks(@RequestParam(defaultValue = "false") boolean state) {
+        return ResponseEntity.ok(repository.findByIsDone(state));
+    }
+    @DeleteMapping
     ResponseEntity<?> deleteAllTasks() {
         repository.deleteAll();
         return ResponseEntity.ok().build();
