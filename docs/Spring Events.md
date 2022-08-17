@@ -1,4 +1,9 @@
 # Spring frameworks provides the eventing mechanism which is built around the ApplicationContext.
+Links that can be helpful:
+[https://reflectoring.io/spring-boot-application-events-explained/]
+
+
+
 Agenda:
 - [Existing Framework Events](#Existing-Framework-Events)
 - [Listening to Multiple Events](#Listening-to-Multiple-Events)
