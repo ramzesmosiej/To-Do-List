@@ -71,7 +71,7 @@ And added a patch method that makes the task done and publishes the event using 
         TaskChangedToDoneEvent taskChangedToDoneEvent = new TaskChangedToDoneEvent(task, this);
         applicationEventPublisher.publishEvent(taskChangedToDoneEvent);
     }
-    ```
+```
 There is also a need for the listener. @EventListener adnotation is used for it.
 ```
 @Slf4j
