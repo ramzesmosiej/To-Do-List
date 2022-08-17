@@ -46,8 +46,8 @@ public void handleMultipleEvents() {
 }
 ```
 ### Annotation driven event-listener
-Starting with Spring 4.2, an event listener is not required to be a bean implementing the ApplicationListener interface — it can be registered on any public method of a managed bean via the @EventListener annotation\
-I tried to create a mechanism that listens for task toggling.\ When the task is done, the mail to the owner of the task will be sent. I will simplify it by logging in the console which task with its description will be used to send a mail.\
+Starting with Spring 4.2, an event listener is not required to be a bean implementing the ApplicationListener interface — it can be registered on any public method of a managed bean via the @EventListener annotation/
+I tried to create a mechanism that listens for task toggling./ When the task is done, the mail to the owner of the task will be sent. I will simplify it by logging in the console which task with its description will be used to send a mail./
 I have created TaskChangedToDoneEvent class: 
 ```
 public class TaskChangedToDoneEvent extends ApplicationEvent {
