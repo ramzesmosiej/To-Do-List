@@ -1,7 +1,9 @@
 # Spring frameworks provides the eventing mechanism which is built around the ApplicationContext.
 Links that can be helpful:
-[https://reflectoring.io/spring-boot-application-events-explained/]
-
+https://reflectoring.io/spring-boot-application-events-explained/
+https://www.tutorialspoint.com/spring/event_handling_in_spring.htm
+https://www.baeldung.com/spring-events
+https://www.baeldung.com/spring-context-events#3-contextstoppedevent
 
 
 Agenda:
