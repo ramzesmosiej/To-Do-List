@@ -74,7 +74,7 @@ And added a patch method that makes the task done and publishes the event using 
     ```
 There is also a need for the listener. @EventListener adnotation is used for it.
 ```
-Slf4j
+@Slf4j
 @Component
 public class ChangedEventToDoneListener {
 
