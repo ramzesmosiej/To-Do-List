@@ -1,9 +1,8 @@
 # Spring frameworks provides the eventing mechanism which is built around the ApplicationContext.
 Agenda:
-- [Existing Framework Events](#Existing Framework Events)
-- [Listening to Multiple Events](#Listening to Multiple Events)
-- [Konfiguracja połączenia](#konfiguracja-połączenia)
-- [Wykorzystanie h2 w tym projekcie](#projekt)
+- [Existing Framework Events](#Existing-Framework-Events)
+- [Listening to Multiple Events](#Listening-to-Multiple Events)
+- [Annotation driven event-listener](#Annotation-driven-event-listener)
 ### Existing Framework Events
 Spring itself publishes a variety of events out of the box. For example, the ApplicationContext will fire various framework events: ContextRefreshedEvent, ContextStartedEvent, RequestHandledEvent etc.
 These events provide application developers an option to hook into the life cycle of the application and the context and add in their own custom logic where needed.
@@ -46,4 +45,6 @@ public void handleMultipleEvents() {
     System.out.println("Multi-event listener invoked");
 }
 ```
+### Annotation driven event-listener
+Starting with Spring 4.2, an event listener is not required to be a bean implementing the ApplicationListener interface — it can be registered on any public method of a managed bean via the @EventListener annotation:
 
