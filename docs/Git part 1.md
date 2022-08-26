@@ -36,5 +36,7 @@ git log
 git log --oneline
 ```
 The are many options when using this command: [link to official docs](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
-
+The default bash command line editor is VIM 
+There is some exercise needed to learn how to use it: 
+[vim docs](https://linuxhandbook.com/basic-vim-commands/#:~:text=Some%20of%20my%20favorite%20Vim%20movement%20commands%20are%3A,on%20the%20screen%20while%20typing%20the%20line%20numbers.)
 
