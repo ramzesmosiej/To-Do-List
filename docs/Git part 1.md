@@ -4,7 +4,7 @@
 - [Git log, VIM, commit messages](Git-log-VIM-commit-messages)
 - [Working with branches](Working-with-branches)
 - [Merging Branches](Merging-Branches)
-- [Git diff](Git-Diff)
+- [Git diff](Git-diff)
 - [Git Stashing](Git-Stashing)
 - [Git Reset & Restore & Checkout](Git-Reset-&-Restore-&-Checkout)
 
@@ -26,3 +26,12 @@ If the Staging Area is set up the way you want it is time to commit new changes.
 ```
 git commit -m "commit message"
 ```
+### Git log, VIM, commit messages
+The command used to view the commit history is the git log command. It will list all the commits with the most recent commits showing at the top
+```
+git log
+```
+```
+git log --oneline
+```
+
