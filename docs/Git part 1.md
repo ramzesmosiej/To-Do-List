@@ -35,5 +35,6 @@ git log
 ```
 git log --oneline
 ```
-The are many options when using this command: [link to officail docs](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
+The are many options when using this command: [link to official docs](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
+
 
