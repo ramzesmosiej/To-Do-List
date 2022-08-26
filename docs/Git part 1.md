@@ -133,3 +133,8 @@ To see both staged and unstaged changes use
 $ git diff HEAD
 ```
 ### Git Stashing
+Often, when you are working on a project and you are not ready to commit you want to switch to another branch. In order not to lose your work you use git stash command. You can get back to this point later.
+```
+git stash
+```
+[docs](https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning)
