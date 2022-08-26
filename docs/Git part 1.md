@@ -26,6 +26,7 @@ If the Staging Area is set up the way you want it is time to commit new changes.
 ```
 git commit -m "commit message"
 ```
+[docs](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
 ### Git log, VIM, commit messages
 The command used to view the commit history is the git log command. It will list all the commits with the most recent commits showing at the top
 ```
@@ -34,5 +35,5 @@ git log
 ```
 git log --oneline
 ```
-The are many options when using this command: [link to off docs](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
+The are many options when using this command: [link to officail docs](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
 
