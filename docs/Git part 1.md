@@ -56,6 +56,6 @@ In order to create branch and immidiately switch to it use:
 git switch -c branchname
 ```
 ```
-# listing all current branches
+// listing all current branches
 git branch
 ```
