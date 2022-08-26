@@ -138,3 +138,17 @@ Often, when you are working on a project and you are not ready to commit you wan
 git stash
 ```
 [docs](https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning)
+### Git Reset & Restore & Checkout
+There are very few reasons to checkout a commit (and not a branch). Maybe you want to experiment with a specific, old revision and therefore need to have that revision's files in your working copy folder.
+```
+$ git checkout 757c47d4
+```
+You are now in a state called detached head. The number of the commit can be found using 
+```
+$ git log --oneline
+```
+We can also reset our repository back to the specific commit using git reset command
+git reset --soft this option moves HEAD back to the specified commit, undoes all the changes made between where HEAD is pointing and the specified commit
+But all the changes are saved in the staged area.
+git reset --hard
+similar but it makes the commit non usable, it deletes all the changes in the working directory.
