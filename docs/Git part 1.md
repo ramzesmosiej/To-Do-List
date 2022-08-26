@@ -39,4 +39,19 @@ The are many options when using this command: [link to official docs](https://gi
 The default bash command line editor is VIM 
 There is some exercise needed to learn how to use it: 
 [vim docs](https://linuxhandbook.com/basic-vim-commands/#:~:text=Some%20of%20my%20favorite%20Vim%20movement%20commands%20are%3A,on%20the%20screen%20while%20typing%20the%20line%20numbers.)
-
+### Working with branches
+Branching means you diverge from the main line of development and continue to do work without messing that main line
+In order to create new branch you use git branch command
+```
+git branch branchname
+```
+HEAD is a special pointer and points to the branch you are currently on.
+Switching to the branch:
+```
+git switch branchname
+```
+That moves head to the chosen branch. If you add commits to the new branch the master branch still points to the commit you were when you switched.
+In order to create branch and immidiately switch to it use:
+```
+git switch -c branchname
+```
