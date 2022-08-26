@@ -11,29 +11,29 @@
 ### Git: Adding & Commiting
 In order to create git repository in a project directory that is currently under version control you have to execute git init command in that directory
 ```
-git init
+$ git init
 ```
 The main tool you use to determine which files are in which state is git status command
 ```
-git status
+$ git status
 ```
 In order to begin tracking a new file you use the command git add. It will than move to the Staging Area. git add . will add all the files present in the current repository.
 ```
-git add filename
-git add .
+$ git add filename
+$ git add .
 ```
 If the Staging Area is set up the way you want it is time to commit new changes.
 ```
-git commit -m "commit message"
+$ git commit -m "commit message"
 ```
 [docs](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
 ### Git log, VIM, commit messages
 The command used to view the commit history is the git log command. It will list all the commits with the most recent commits showing at the top
 ```
-git log
+$ git log
 ```
 ```
-git log --oneline
+$ git log --oneline
 ```
 The are many options when using this command: [link to official docs](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History)
 The default bash command line editor is VIM 
@@ -43,19 +43,44 @@ There is some exercise needed to learn how to use it:
 Branching means you diverge from the main line of development and continue to do work without messing that main line
 In order to create new branch you use git branch command
 ```
-git branch branchname
+$ git branch branchname
 ```
 HEAD is a special pointer and points to the branch you are currently on.
 Switching to the branch:
 ```
-git switch branchname
+$ git switch branchname
 ```
 That moves head to the chosen branch. If you add commits to the new branch the master branch still points to the commit you were when you switched.
 In order to create branch and immidiately switch to it use:
 ```
-git switch -c branchname
+$ git switch -c branchname
 ```
 ```
 // listing all current branches
-git branch
+$ git branch
+```
+```
+// changing branch name
+$ git branch --move bad-branch-name corrected-branch-name
+```
+### Git diff
+Diff is used to show all the changes done after the last commit.
+Git diff shows the exact lines added and removed. It is an extension to the git status command.
+For example, to see what you have staged that will go into the next commit, use:
+```
+$ git diff --staged
+```
+```
+diff --git a/README b/README
+new file mode 100644
+index 0000000..03902a1
+--- /dev/null
++++ b/README
+@@ -0,0 +1 @@
++My Project
+```
+It will show only changes that are still unstaged.
+To see both staged and unstaged changes use
+```
+$ git diff HEAD
 ```
