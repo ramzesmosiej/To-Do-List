@@ -35,7 +35,7 @@ Adres bazy danych można znaleźć w logach aplikacji podczas uruchamiania aplik
 Domyślna nazwa użytkownika to sa, hasło puste. Wszystko można zmieniać za pomocą odpowiednich wpisów w application.properties
 Skonfigurowałem domyślny adres bazy za pomocą wpisu:
 ```
-jdbc:h2:mem:my_database
+spring.datasource.url=jdbc:h2:mem:my_database
 ```
 ### Projekt
 Spring Boot automatycznie generuje dwie relacje Groups i Tasks na podstawie obiektów @Entity (nazwa tabeli bierze się z @Table(name=[..]).
